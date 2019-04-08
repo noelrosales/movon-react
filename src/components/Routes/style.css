@@ -1,0 +1,44 @@
+.map{
+    background: url('../../assets/img/ppp3.svg');
+    background-size: cover;
+    background-position: center
+}
+
+@media only screen and (max-width: 768px) {
+    .map{
+        background-size: 200% 80%;
+        background-repeat: no-repeat;
+        background-position: center
+    }
+}
+
+@media only screen and (max-width: 425px){
+    .Routes .map-container{
+        text-align: center;
+        height: auto !important;
+    }
+
+    .Routes .map-container h1 {
+        font-size: 1.5em
+    }
+
+    .Routes .map-container h4{
+        font-size: 1.3em
+    }
+
+    .Routes .map-left{
+        height: 20vh;
+        order: 2
+    }
+
+    .Routes .map-right{
+        height: 80vh;
+        order: 1;
+    }
+
+    .map{
+        background-size: 200% 93%;
+        background-repeat: no-repeat;
+        background-position: center
+    }
+}

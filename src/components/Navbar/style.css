@@ -1,0 +1,37 @@
+nav.bg-dark{
+    background: #008176 !important
+}
+
+nav img{
+    height: 40px;
+}
+
+nav.secondary{
+    box-shadow: 0px 1px 4px #333, 0px 2px 8px rgb(104, 104, 104);
+    animation: showMenu .25s ease-in-out alternate;
+}
+
+.nav-item a img{
+    transform: scale(1.3,1.3)
+}
+
+@keyframes showMenu {
+    from{ opacity: 0; }
+    to{ opacity: 1; }
+}
+
+@media only screen and (max-width: 768px){
+
+    nav.mobile-colored{
+        background: #008176 !important;
+        box-shadow: 0px 1px 4px #333, 0px 2px 8px rgb(104, 104, 104);
+    }
+
+    nav img{
+        height: 30px;
+    }
+
+    nav.secondary{
+        display: none;
+    }
+}

@@ -1,0 +1,9 @@
+.About .row{
+    min-height: 70vh;
+}
+.about-title{
+    padding-bottom: 10px;
+    text-align: center;
+    display: inline-block;
+    border-bottom: 3px solid teal
+}

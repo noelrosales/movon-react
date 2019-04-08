@@ -1,0 +1,46 @@
+.Partners img{
+    transform: scale(.5,.5)
+}
+
+.Partners img.rsl{
+    transform: scale(.7,.6)
+}
+
+.Partners>div>div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+span.title{
+    padding-bottom: '10px';
+    border-bottom:'3px solid #259B9A'
+}
+
+.logo-small.salvacion,
+.logo-small.isarog{
+    transform: scale(1,1)
+}
+
+
+@media only screen and (max-width: 425px) {
+    span.title {
+        font-size: .7em !important;
+    }
+
+    .Partners>div>div{
+        height: 15vh
+    }
+
+    .Partners img{
+        transform: scale(.4,.4)
+    }
+
+    .logo-small{
+        transform: scale(.7,.7) !important
+    }
+
+    .logo-small.salvacion{
+        transform: scale(.8,1) !important
+    }
+}

@@ -1,0 +1,10 @@
+.Destinations .route-name{
+    border-bottom: 3px solid teal;
+    margin-bottom: 20px;
+}
+
+.Destinations .places{
+    list-style: none;
+    padding: 0px;
+    color: #666
+}

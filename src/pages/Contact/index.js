@@ -1,9 +1,53 @@
-import React from 'react'
+import React,{useState} from 'react';
+import axios from 'axios';
 import Banner from '../../components/Banner';
 
 import './style.css'
 
 const Contact = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('na');
+  const [message, setMessage] = useState('');
+
+  const sendForm = (e) => {
+    e.preventDefault();
+    console.log(e);
+
+    axios({
+      method: 'post',
+      url: 'http://ec2-54-179-191-186.ap-southeast-1.compute.amazonaws.com/server/api/v1/passenger/webapp/contact-us',
+      data: {
+        name: name, 
+        email: email,
+        subject: subject,
+        message: message
+      },
+      headers: {
+          'x-auth-deviceid' : '1',
+          'x-auth-devicetype' : '1'
+      }
+    })
+    .then(res => {
+      if(res.data.success === true) {
+        alert('Thank you! Your email has been sent.');
+        setName('');
+        setEmail('');
+        setSubject('na');
+        setMessage('');
+      } else {
+        console.log(res)
+        alert(res.data.errors[0])
+      }
+    })
+    .catch(err => {
+      console.log(err)
+    })
+    .then(()=>{
+      console.log('done')
+    })
+  }
+
   return (
     <>
       <Banner text="Contact Us" />
@@ -20,12 +64,15 @@ const Contact = () => {
               <h1><i className="fas fa-phone"></i></h1>
               <h5>PHONE</h5>
               <p>(02) 840 2643<br/>(02) 659 678</p>
+              <a href="tel:+639099282819">+63 9099282819</a> <br/>
+              <a href="tel:+639613612077">+63 9613612077</a> <br/>
+              <a href="tel:+639950042433">+63 9950042433</a>
             </div>
 
             <div className="col-md-4 p-4">
               <h1><i className="fas fa-envelope-open-text"></i></h1>
               <h5>EMAIL</h5>
-              <p>support@movon.ph</p>
+              <p><a href="mailto:support@movon.com.ph">support@movon.com.ph</a></p>
             </div>
           </div>
         </div>
@@ -38,13 +85,20 @@ const Contact = () => {
               <h1>Message Us</h1>
               <p>We're here to help and answer any question you might have. We look forward to heariig from you.</p>
               <div className="card card-body bg-light">
-                <form>
+                <form onSubmit={sendForm}>
                   <div className="row">
                       <div className="col-md-4">
                           <div className="form-group">
                               <label htmlFor="name">
                                   Name</label>
-                              <input type="text" className="form-control" id="name" placeholder="Enter name" required="required" />
+                              <input 
+                                type="text" 
+                                className="form-control" 
+                                id="name" 
+                                placeholder="Enter name" 
+                                required="required" 
+                                value={name}
+                                onChange={e => setName(e.target.value)}/>
                           </div>
                           <div className="form-group">
                               <label htmlFor="email">
@@ -52,12 +106,26 @@ const Contact = () => {
                               <div className="input-group">
                                   <span className="input-group-addon"><span className="glyphicon glyphicon-envelope"></span>
                                   </span>
-                                  <input type="email" className="form-control" id="email" placeholder="Enter email" required="required" /></div>
+                                  <input 
+                                    type="email" 
+                                    className="form-control" 
+                                    id="email" 
+                                    placeholder="Enter email" 
+                                    required="required" 
+                                    value={email}
+                                    onChange={e => setEmail(e.target.value)}/>
+                              </div>
                           </div>
                           <div className="form-group">
                               <label htmlFor="subject">
                                   Subject</label>
-                              <select id="subject" name="subject" defaultValue={'na'} className="form-control" required="required">
+                              <select 
+                                id="subject" 
+                                name="subject" 
+                                defaultValue={subject} 
+                                className="form-control" 
+                                required="required"
+                                onChange={e => setSubject(e.target.value)}>
                                   <option value="na">Choose One:</option>
                                   <option value="service">General Customer Service</option>
                                   <option value="suggestions">Suggestions</option>
@@ -69,8 +137,15 @@ const Contact = () => {
                           <div className="form-group">
                               <label htmlFor="name">
                                   Message</label>
-                              <textarea name="message" id="message" className="form-control" rows="9" cols="25" required="required"
-                                  placeholder="Message"></textarea>
+                              <textarea 
+                                name="message" 
+                                id="message" 
+                                className="form-control" 
+                                rows="9" cols="25" 
+                                required="required"
+                                placeholder="Message"
+                                value={message}
+                                onChange={e => setMessage(e.target.value)}></textarea>
                           </div>
                       </div>
                       
